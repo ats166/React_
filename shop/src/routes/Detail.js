@@ -12,6 +12,7 @@ function Detail(props) {
   let shoesimg = "https://codingapple1.github.io/shop/shoes" + (parseInt(detailid)+1) + ".jpg"
   return (
     <div className="container">
+      
       <div className="row">
         <div className="col-md-6">
           <img src={shoesimg} width="100%" />
