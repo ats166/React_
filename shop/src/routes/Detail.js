@@ -1,40 +1,28 @@
 import { useParams } from "react-router-dom"
+import styled from 'styled-components'
 
 function Detail(props) {
 
   let { detailid } = useParams();
-  return (
-    props.shoes.map((a,i) => {
-      console.log(detailid,a.id)
-      return (
-        (detailid == a.id) ? <Item key={i}/> : <Null key={i}/>
-      )
-    })
-  )
-}
-
-function Item(props) {
+  let idx = props.shoes.find((item) => {
+    return (
+      item.id == detailid
+    )
+  })
+  let shoesimg = "https://codingapple1.github.io/shop/shoes" + (parseInt(detailid)+1) + ".jpg"
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+          <img src={shoesimg} width="100%" />
         </div>
         <div className="col-md-6">
-          <h4 className="pt-5">{props.shoes[0]}</h4>
-          <p>{props.shoes[0]}</p>
-          <p>{props.shoes[0]}</p>
+          <h4 className="pt-5">{idx.title}</h4>
+          <p>{idx.content}</p>
+          <p>{idx.price}</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
-    </div>
-  )
-}
-
-function Null(props) {
-  return (
-    <div>
-      찾으시는 정보가 없습니다.
     </div>
   )
 }
