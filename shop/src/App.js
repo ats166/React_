@@ -4,13 +4,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import data from './data.js'
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import { Routes, Route, useNavigate, } from 'react-router-dom'
 import Detail from './routes/Detail.js'
 import axios from 'axios'
+import Cart from './routes/Cart.js'
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -26,21 +27,20 @@ function App() {
       </Navbar>
 
       <Routes>
+        <Route path="/cart" element={<Cart/>} />
         <Route path="/" element={<div>
           <div className='main-bg'></div>
 
           <div className="container">
             <button onClick={() => {
               axios.get('https://codingapple1.github.io/shop/data2.json')
-              // console.log(shoes)
-              .then((data) => {
-                console.log(data.data,'GET')
-                data.data.map((item) => {
-                  shoes.push(item)
-                  console.log(shoes,item)
+                // console.log(shoes)
+                .then((data) => {
+                  let copy = [...shoes, ...data.data]
+                  setShoes(copy)
+                  console.log(shoes)
                 })
-              })
-              .catch((error) => console.log(error))
+                .catch((err) => console.log(err))
             }}> 버튼 </button>
             <div className="row">
               {

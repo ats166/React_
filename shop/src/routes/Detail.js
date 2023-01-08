@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import { Nav } from "react-bootstrap"
 // import styled from 'styled-components'
 
 function Detail(props) {
 
   let [divshow, setDivshow] = useState(1);
+  let [tab, setTab] = useState(0);
   let [count, setCount] = useState(0);
   let { detailid } = useParams();
   let idx = props.shoes.find((item) => {
@@ -17,7 +19,7 @@ function Detail(props) {
   useEffect(() => {
     setTimeout(() => {
       setDivshow(0);
-    }, 2000,[])
+    }, 2000, [])
   })
 
 
@@ -36,8 +38,33 @@ function Detail(props) {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+
+      <Nav variant="tabs" defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link eventKey="link0" onClick={() => { setTab(0) }}>상품 소개</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link1" onClick={() => { setTab(1) }}>Q&A</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link2" onClick={() => { setTab(2) }}>리뷰</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab}/>
     </div>
   )
+}
+
+function TabContent(props){
+  if (props.tab === 0){
+    return <div>내용0</div>
+  }
+  if (props.tab === 1){
+    return <div>내용1</div>
+  }
+  if (props.tab === 2){
+    return <div>내용2</div>
+  }
 }
 
 
