@@ -6,15 +6,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import data from './data.js'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/Detail.js'
+import axios from 'axios'
 
 function App() {
 
-  let [shoes] = useState(data)
+  let [shoes] = useState(data);
   let navigate = useNavigate();
 
   return (
     <div className="App">
-
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">쇼핑몰이름</Navbar.Brand>
@@ -30,6 +30,18 @@ function App() {
           <div className='main-bg'></div>
 
           <div className="container">
+            <button onClick={() => {
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              // console.log(shoes)
+              .then((data) => {
+                console.log(data.data,'GET')
+                data.data.map((item) => {
+                  shoes.push(item)
+                  console.log(shoes,item)
+                })
+              })
+              .catch((error) => console.log(error))
+            }}> 버튼 </button>
             <div className="row">
               {
                 shoes.map(function (name, i) {
@@ -48,10 +60,10 @@ function App() {
         < Route path="/detail/:detailid" element={<Detail shoes={shoes} />} />
         < Route path="*" element={<div> 없는 페이지 </div>} />
 
-        <Route path="/event" element={<div> <h3> 오늘의 이벤트 </h3> <Outlet></Outlet></div>}>
+        {/* <Route path="/event" element={<div> <h3> 오늘의 이벤트 </h3> <Outlet></Outlet></div>}>
           <Route path="one" element={<div> <h5> 첫 주문시 양배추즙 서비스 </h5></div>}/>
           <Route path="two" element={<div> <h5> 생일기념 쿠폰받기 </h5></div>}/>
-        </Route>
+        </Route> */}
       </Routes >
 
     </div>
