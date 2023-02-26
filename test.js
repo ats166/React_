@@ -8,9 +8,5 @@ for (let i = 0; i < n+1; i++) {
         answer += arr[i]
         console.log('a');
         console.log('a');
-        console.log('b');
-        console.log('b');
-        console.log('c');
-        console.log('c');
     }
 }
