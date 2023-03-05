@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux'
 function Detail(props) {
 
   let [divshow, setDivshow] = useState(1);
+  let [tab, setTab] = useState(0);
   let [count, setCount] = useState(0);
   let { detailid } = useParams();
-  let [tab, setTab] = useState(0);
   let dispatch = useDispatch()
   let navigate = useNavigate();
 
@@ -70,5 +70,18 @@ function Detail(props) {
 
   )
 }
+
+function TabContent(props){
+  if (props.tab === 0){
+    return <div>내용0</div>
+  }
+  if (props.tab === 1){
+    return <div>내용1</div>
+  }
+  if (props.tab === 2){
+    return <div>내용2</div>
+  }
+}
+
 
 export default Detail

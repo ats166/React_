@@ -20,7 +20,7 @@ function App() {
       console.log('요청됨') 
       return a.data })
   )
-
+ 
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
