@@ -21,9 +21,7 @@ let cartdata = createSlice({
       item.id = action.payload.id
       item.name = action.payload.title
       item.count = 1
-      console.log(item,'dd');
       state.push(item)
-      console.log(state);
     }
   }
 })
