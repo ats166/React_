@@ -1,4 +1,3 @@
-n = 10;
 let answer = 0;
 let arr = [];
 
