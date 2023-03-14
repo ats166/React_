@@ -1,4 +1,4 @@
-let answer = 0;
+let answer = 10;
 let arr = [];
 
 for (let i = 0; i < n+1; i++) {
